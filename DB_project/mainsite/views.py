@@ -27,31 +27,33 @@ def login(request):
             locationCode = dict(zip(alphabet,code))
             id = password
             if len(id) != 10 or not(id[0].isalpha()) \
-                or not(id[1:].isdigit() or int[id[1] > 2 or id[1] < 1]):
-                print('Error: wrong format')
+                or (int[id[1] > 2 or id[1] < 1]):
+                user = None
+                #print('Error: wrong format')
                 # Convert 1st Alphabet to Numeric code
-            encodeID = list(str(locationCode[id[0].upper()]))
-            encodeID.extend(list(id[1:]))
-            print(encodeID)
-            checkSum = int(encodeID[0])
-
-                # Calculate the checksum of ID
-            para = 9
-            for n in encodeID[1:]:
-                if para == 0:
-                    para = 1
-                print(n, para)
-                checkSum += int(n)*para
-                para -= 1
-
-            # Check the checksum
-            if checkSum % 10 == 0:
-                # print("ID is correct")
-                User.objects.create_user(username=password, password=password)
-                user = auth.authenticate(username=password, password=password)
             else:
-                # print('Error: ID is not correct')
-                user=None
+                encodeID = list(str(locationCode[id[0].upper()]))
+                encodeID.extend(list(id[1:]))
+                print(encodeID)
+                checkSum = int(encodeID[0])
+
+                    # Calculate the checksum of ID
+                para = 9
+                for n in encodeID[1:]:
+                    if para == 0:
+                        para = 1
+                    print(n, para)
+                    checkSum += int(n)*para
+                    para -= 1
+
+                # Check the checksum
+                if checkSum % 10 == 0:
+                    # print("ID is correct")
+                    User.objects.create_user(username=password, password=password)
+                    user = auth.authenticate(username=password, password=password)
+                else:
+                    # print('Error: ID is not correct')
+                    user=None
     except:
         user = None
 
