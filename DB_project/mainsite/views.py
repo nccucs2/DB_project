@@ -16,28 +16,34 @@ def login(request):
         return HttpResponseRedirect('/student/')
     try:
         # username = request.POST['usr_id']
+
         password = request.POST['usr_pass']
         user = auth.authenticate(username=password, password=password)
+
         if user is None:
-            # create alphabet for 1st char of ID
-            alphabet = list(string.ascii_uppercase[0:8])
-            alphabet.extend(list(string.ascii_uppercase[9:]))
-            code = list(range(10,33))
+
+            code = [10,11,12,13,14,15,16,17,34,18,19,20,21,22,35,23,24,25,26,27,28,29,32,30,31,33]
+            alphabet=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+
             # create the location mapping code for char of ID
             locationCode = dict(zip(alphabet,code))
+
             id = password
-            if len(id) != 10 or not(id[0].isalpha()) \
-                or (int[id[1] > 2 or id[1] < 1]):
+
+            if id[0].islower() or len(id) != 10 or not(id[0].isalpha()) \
+            or not(id[1:].isdigit()or(int[id[1] > 2 or id[1] < 1])):
+
                 user = None
-                #print('Error: wrong format')
                 # Convert 1st Alphabet to Numeric code
             else:
+                print(id)
                 encodeID = list(str(locationCode[id[0].upper()]))
-                encodeID.extend(list(id[1:]))
                 print(encodeID)
+                encodeID.extend(list(id[1:]))
                 checkSum = int(encodeID[0])
 
                     # Calculate the checksum of ID
+
                 para = 9
                 for n in encodeID[1:]:
                     if para == 0:
@@ -47,14 +53,19 @@ def login(request):
                     para -= 1
 
                 # Check the checksum
+                # print(id)
                 if checkSum % 10 == 0:
-                    # print("ID is correct")
+                    print("ID is correct")
+
                     User.objects.create_user(username=password, password=password)
                     user = auth.authenticate(username=password, password=password)
                 else:
-                    # print('Error: ID is not correct')
+                    print('Error: ID is not correct')
+
                     user=None
+
     except:
+
         user = None
 
 
@@ -68,19 +79,6 @@ def login(request):
         return render(request,'login.html')
 
 
-
-        #return render_to_response('login.html')
-# def register(request):
-#     if request.method == 'POST':
-#         form = UserCreationForm(request.POST)
-#         if form.is_valid():
-#             user = form.save()
-#             return HttpResponseRedirect('/accounts/identify/')
-#         else:
-#             messages.error(request,'輸入格式有誤!')
-#     else:
-#         form = UserCreationForm()
-#     return render(request,'register.html',{'form':form})
 def logout(request):
     auth.logout(request)
     return HttpResponseRedirect('/login/')
