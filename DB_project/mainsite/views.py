@@ -8,7 +8,7 @@ from django.contrib import auth
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from mainsite.models import student_info
+# from mainsite.models import student_info
 import string
 def login(request):
     #template = get_template('login.html')
