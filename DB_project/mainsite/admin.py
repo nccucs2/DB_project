@@ -24,6 +24,7 @@ class StationAdmin(admin.ModelAdmin):
 admin.site.register(Station,StationAdmin)
 
 class SeatAdmin(admin.ModelAdmin):
+    # list_display = ('run_id','seat_id')
     list_display = ('train_id','seat_id')
 admin.site.register(Seat,SeatAdmin)
 
