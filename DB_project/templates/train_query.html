@@ -15,7 +15,8 @@
        font-family: 'Sniglet', cursive;
       }
       h1{
-        left:50%;
+        left:45%;
+        margin-left:-30px;
         margin-top:20px;
         position:absolute;
       }
@@ -63,33 +64,38 @@
 
     <h1> 班次查詢 </h1>
 
-    <form>
-      <label class='start' for='start'>起點</label>
-      <select name="YourLocation">
+    <form name="query_train" method='POST'>
+      {% csrf_token %}
+      <label class='start' for='start' name='start'>起點</label>
+      <select name="start">
+        <option>--</option>
         {% for i in station %}
         {{i.name}}
 　       <option>{{i.name}}</option>
           {% endfor %}
         </select>
-      <label class='finish' for='finish'>終點</label>
-      <select name="YourLocation">
+      <label class='finish' for='finish' name=finish>終點</label>
+      <select name="finish">
+        <option>--</option>
         {% for i in station %}
         {{i.name}}
     　   <option>{{i.name}}</option>
           {% endfor %}
     </select>
     <label class='time' for='time'>時間</label>
-    <select name="YourLocation">
-      <option>08:00</option>
-      <option>12:00</option>
-      <option>16:00</option>
-      <option>20:00</option>
+    <select name="time">
+      <option>--</option>
+      <option>08:00:00</option>
+      <option>12:00:00</option>
+      <option>16:00:00</option>
+      <option>20:00:00</option>
       </select>
     <label class='date' for='date'>日期</label>
-    <select name="YourLocation">
-  　   <option>06-28</option>
-       <option>06-29</option>
-       <option>06-30</option>
+    <select name="date">
+      <option>--</option>
+  　   <option>2018-06-28</option>
+       <option>2018-06-29</option>
+       <option>2018-06-30</option>
   </select>
       <button type="submit" class="btn btn-primary" style="font-size:30px;">查詢</button>
   </form>

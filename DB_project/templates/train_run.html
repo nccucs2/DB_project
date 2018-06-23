@@ -1,0 +1,58 @@
+<html>
+  <head>
+    <title>高鐵時刻表</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+</script>
+    <style>
+    table{
+      margin-left:50px;
+      width:1800px;
+    }
+    tr{
+      height:40px;
+      position:relative;
+    }
+    td{
+      color: #009FCC;
+    }
+    td:hover{
+      color:white;
+      background-color:#009FCC;
+    }
+    h1{
+      color:#FF5511;
+    }
+    a{
+      position:absolute;
+      margin-top:-40px;
+      left:90%;
+      font-size:10px;
+    }
+      </style>
+    <h1>
+      您的搜尋結果如下
+    </h1>
+    <button class="btn btn-Success" >回上一頁</a>
+<table >
+　<tr>
+  <td align="center">車號</td>
+  <td align="center">起點</td>
+  <td align="center">終點</td>
+  <td align="center">日期</td>
+  <td align="center">時間</td>
+　</tr>
+{% for run in runs %}
+<tr>
+<td align="center">{{run.train_id}}</td>
+<td align="center">{{run.start_station}}</td>
+<td align="center">{{run.dest_station}}</td>
+<td align="center">{{run.date}}</td>
+<td align="center">{{run.time}}</td>
+</tr>
+{% endfor %}
+</table>

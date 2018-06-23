@@ -99,8 +99,27 @@ def course(request):
     return render(request,'course.html')
 
 def train_query(request):
+    if request.POST:
+        start = request.POST['start']
+        finish = request.POST['finish']
+        time = request.POST['time']
+        date = request.POST['date']
+        p = Run.objects.all()
+        if start != '--':
+            p = p.filter(start_station=start)
+        if finish != '--':
+            p = p.filter(dest_station=finish)
+        if time != '--':
+            p = p.filter(time=time)
+        if date != '--':
+            p = p.filter(date=date)
+        for i in p :
+            print(i)
+        return render(request,'train_run.html',{'runs':p})
+
     station = Station.objects.all()
     return render(request,'train_query.html',{'station':station})
+
 
 
 # Create your views here.
