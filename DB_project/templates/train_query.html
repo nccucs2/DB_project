@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Inccu homepage</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <style>
+        body, html{
+       height: 100%;
+       padding: 0;
+       margin: 0;
+       font-family: 'Sniglet', cursive;
+      }
+      h1{
+        left:50%;
+        margin-top:20px;
+        position:absolute;
+      }
+      form{
+        width:1500px;
+        height:200px;
+        margin-left:30px;
+        margin-top:50px;
+        position:absolute;
+      }
+      select{
+        margin-left:120px;
+        margin-top: 30px;
+        background-color:transparent;
+        box-shadow:0px 0px 5px 0px;
+        height:50px;
+        width:1500px;
+        font-size:20px;
+        position:relative;
+      }
+      option{
+        margin-left:120px;
+        height:60px;
+        font-size:20px;
+        color:gray;
+        position:relative;
+      }
+      label{
+        top:20px;
+        margin-left:120px;
+        font-size:30px;
+        position:relative;
+        color:red;
+      }
+      button{
+        position: absolute;
+        left:45%;
+        margin-top:50px;
+        border-radius:20px;
+        width:400px;
+        height:60px;
+      }
+        </style>
+    </head>
+
+    <h1> 班次查詢 </h1>
+
+    <form>
+      <label class='start' for='start'>起點</label>
+      <select name="YourLocation">
+        {% for i in station %}
+        {{i.name}}
+　       <option>{{i.name}}</option>
+          {% endfor %}
+        </select>
+      <label class='finish' for='finish'>終點</label>
+      <select name="YourLocation">
+        {% for i in station %}
+        {{i.name}}
+    　   <option>{{i.name}}</option>
+          {% endfor %}
+    </select>
+    <label class='time' for='time'>時間</label>
+    <select name="YourLocation">
+      <option>08:00</option>
+      <option>12:00</option>
+      <option>16:00</option>
+      <option>20:00</option>
+      </select>
+    <label class='date' for='date'>日期</label>
+    <select name="YourLocation">
+  　   <option>06-28</option>
+       <option>06-29</option>
+       <option>06-30</option>
+  </select>
+      <button type="submit" class="btn btn-primary" style="font-size:30px;">查詢</button>
+  </form>
+
+
+
+</html>

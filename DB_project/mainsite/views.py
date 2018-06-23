@@ -8,6 +8,7 @@ from django.contrib import auth
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from mainsite.models import Passenger,Train,Run,Ticket,Station,Seat,Pass
 # from mainsite.models import student_info
 import string
 def login(request):
@@ -97,6 +98,9 @@ def student(request):
 def course(request):
     return render(request,'course.html')
 
-def suggest_course(request):
-    return render(request,'suggest_course.html')
+def train_query(request):
+    station = Station.objects.all()
+    return render(request,'train_query.html',{'station':station})
+
+
 # Create your views here.
