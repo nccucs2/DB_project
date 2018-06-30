@@ -144,14 +144,27 @@
                             <tbody>
 
                                 {% for i in info %}
+                                <form action='/menu/delete_ticket/' name="query_train" method='POST'>
+                                  {% csrf_token %}
                                 <tr class="row100 body">
                                     <td class="cell100 column1">{{i.run_id.start_station}} - {{i.run_id.dest_station}}</td>
                                     <td class="cell100 column3">{{i.run_id.date}}, {{i.run_id.time}}</td>
-                                    <td class="cell100 column2">{{i.run_id.train_id}}</td>
-
+                                    <input type = "hidden" name="id" value={{i.id}}><td class="cell100 column2">{{i.run_id.run_id}}</td>
                                     <td class="cell100 column4">{{i.passenger}}</td>
-                                    <td class="cell100 column5"><button class="ui blue button" type="submit"  >Edit</button></td>
-                                    <td class="cell100 column6"><button class="ui blue button" type="submit"  >Delete</button></td>
+                                    <td class="cell100 column5"><button class="ui blue button" type="submit">Delete</button></td>
+                                    </form>
+                                    <td class="cell100 column6">
+                                      <form action='/menu/modify_ticket/' name="query_train" method='POST'>
+                                      {% csrf_token %}
+                                      <input type = "hidden" name="id" value={{i.id}}>
+                                    <select name='origin_id'>{% for j in trains %}
+                                    <option>{{j}}</option>
+                                  {% endfor %}
+                                </select>
+                                <button class="ui blue button" type="submit">Modify</button>
+                                  </form>
+                                </td>
+
                                 </tr>
                                 {% endfor %}
                             </tbody>

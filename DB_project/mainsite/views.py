@@ -149,7 +149,8 @@ def query_ticket(request):
         q = q.filter(id_phone_num__name=request.user)
     except:
         info_list=[]
-    return render(request,'query_ticket.html',{'info':q})
+    trains=Run.objects.all()
+    return render(request,'query_ticket.html',{'info':q,'trains':trains})
 
 def delete_ticket(request):
     ticket = Ticket.objects.get(id=request.POST['id'])
@@ -161,15 +162,14 @@ def delete_ticket(request):
     return HttpResponseRedirect('/menu/query_ticket/')
 
 def modify_ticket(request):
-    ticket = Ticket.objects.get(id=request.POST['original_id'])
+    ticket = Ticket.objects.get(id=request.POST['id'])
     ticket.delete()
-
-    train=Run.objects.get(run_id=request.POST['id'])
+    train=Run.objects.get(run_id=request.POST['origin_id'])
     seat=Seat.objects.filter(train_id=train.train_id,booked=True)
     random_num=random.randint(0,len(seat))
-    Ticket.objects.create(passenger=seat[random_num],run_id=Run.objects.get(run_id=request.POST['id']),id_phone_num=Passenger.objects.get(name=request.user))
+    Ticket.objects.create(passenger=seat[random_num],run_id=Run.objects.get(run_id=request.POST['origin_id']),id_phone_num=Passenger.objects.get(name=request.user))
     seat[random_num].booked=False
     seat[random_num].save()
 
-    return render(request,'modify_ticket.html',{'myticket':myticket})
+    return HttpResponseRedirect('/menu/query_ticket/')
 # Create your views here.
