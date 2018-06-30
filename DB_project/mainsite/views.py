@@ -138,15 +138,16 @@ def new_ticket(request):
     return render(request,'new_ticket.html',{'runs':runs})
 
 def query_ticket(request):
-
-    q = Ticket.objects.all()
-    q = q.filter(id_phone_num__name=request.user.name)
-    r = Run.objects.all()
     info_list=[]
-    for i in q:
-        run_info = r.filter(run_id=q.run_id)
-        info_list.append(run_info)
-
+    try:
+        q = Ticket.objects.all()
+        q = q.filter(id_phone_num__name=request.user.name)
+        r = Run.objects.all()
+        for i in q:
+            run_info = i.run_id
+            info_list.append(run_info)
+    except:
+        info_list=[]
     return render(request,'query_ticket.html',{'info':info_list})
 
 def modify_ticket(request):
