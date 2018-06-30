@@ -14,7 +14,7 @@ import string
 def login(request):
     #template = get_template('login.html')
     if request.user.is_authenticated:
-        return HttpResponseRedirect('/student/')
+        return HttpResponseRedirect('/menu/')
     try:
         # username = request.POST['usr_id']
 
@@ -73,7 +73,7 @@ def login(request):
     if user is not None:
         if user.is_active:
             auth.login(request,user)
-            return HttpResponseRedirect('/student/')
+            return HttpResponseRedirect('/menu/')
     else:
         if request.POST:
             messages.error(request,'查無此身份')
@@ -83,20 +83,12 @@ def login(request):
 def logout(request):
     auth.logout(request)
     return HttpResponseRedirect('/login/')
-def identify(request):
-    if request.POST:
-        p=student_info.objects.create(major=request.POST['major'],name=request.POST['name'],number=request.POST['number'])
-        p.save();
-        return HttpResponseRedirect('/login/')
-    return render(request,'identify.html')
-def student(request):
+
+def menu(request):
     if request.user.is_authenticated:
-        return render(request,'student.html')
+        return render(request,'menu.html')
     else:
         return HttpResponseRedirect('/login/')
-
-def course(request):
-    return render(request,'course.html')
 
 def train_query(request):
     if request.POST:
@@ -120,6 +112,12 @@ def train_query(request):
     station = Station.objects.all()
     return render(request,'train_query.html',{'station':station})
 
+def delete_ticket(request):
+    return render(request,'delete_ticket.html')
 
+def query_ticket(request):
+    return render(request,'query_ticket.html')
 
+def modify_ticket(request):
+    return render(request,'modify_ticket.html')
 # Create your views here.

@@ -21,13 +21,11 @@ from mainsite import grade
 from mainsite import gpa
 urlpatterns = [
     url(r'^login/$', views.login),
-    url(r'^student/$',views.student),
+    url(r'^menu/$',views.menu),
     url(r'^accounts/logout/$',views.logout),
     url('admin/', admin.site.urls),
-    url(r'^student/grade/$',grade.grade),
-    url(r'^student/gpa/$',gpa.gpa),
-    url(r'^student/course/$',views.course),
-    url(r'^student/suggest_course/$',views.train_query),
-    # url(r'^accounts/register/$',views.register),
-    url(r'^accounts/identify/$',views.identify),
+    url(r'^student/delete_ticket/$',views.delete_ticket),
+    url(r'^student/modify_ticket/$',views.modify_ticket),
+    url(r'^student/query_ticket/$',views.query_ticket),
+    url(r'^student/train_query/$',views.train_query),
 ]
