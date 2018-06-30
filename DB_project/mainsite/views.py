@@ -112,8 +112,8 @@ def train_query(request):
     station = Station.objects.all()
     return render(request,'train_query.html',{'station':station})
 
-def delete_ticket(request):
-    return render(request,'delete_ticket.html')
+def new_ticket(request):
+    return render(request,'new_ticket.html')
 
 def query_ticket(request):
     return render(request,'query_ticket.html')
