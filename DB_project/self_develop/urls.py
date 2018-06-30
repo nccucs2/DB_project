@@ -24,8 +24,8 @@ urlpatterns = [
     url(r'^menu/$',views.menu),
     url(r'^accounts/logout/$',views.logout),
     url('admin/', admin.site.urls),
-    url(r'^student/delete_ticket/$',views.delete_ticket),
-    url(r'^student/modify_ticket/$',views.modify_ticket),
-    url(r'^student/query_ticket/$',views.query_ticket),
-    url(r'^student/train_query/$',views.train_query),
+    url(r'^menu/delete_ticket/$',views.delete_ticket),
+    url(r'^menu/modify_ticket/$',views.modify_ticket),
+    url(r'^menu/query_ticket/$',views.query_ticket),
+    url(r'^menu/train_query/$',views.train_query),
 ]
