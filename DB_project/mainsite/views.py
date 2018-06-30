@@ -133,12 +133,18 @@ def query_ticket(request):
     info_list=[]
     try:
         q = Ticket.objects.all()
-        q = q.filter(id_phone_num__name=request.user.name)
+        q = q.filter(id_phone_num__name=request.user)
     except:
         info_list=[]
     return render(request,'query_ticket.html',{'info':q})
 
+def delete_ticket(request):
+    ticket = Ticket.objects.get(id=request.POST['id'])
+    ticket.delete()
+    return HttpResponseRedirect('/menu/query_ticket/')
+
 def modify_ticket(request):
-    myticket = Ticket.objects.filter(id_phone_num__name=request.user)
+    ticket = Ticket.objects.get(id=request.POST['id'])
+
     return render(request,'modify_ticket.html',{'myticket':myticket})
 # Create your views here.

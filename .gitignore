@@ -3,4 +3,4 @@ myvenv
 db.sqlite3
 media
 local_setting.py
-/minsite/__init__.py
+/mainsite/__init__.py

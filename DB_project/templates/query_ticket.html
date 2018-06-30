@@ -181,16 +181,33 @@
     <h1>GPA</h1>
 
     <div>
-        {% for i in info %}
-        <p>
-            <h5>from:{{i.run_id.start_station}}</h5>
-            <h5>to:{{i.run_id.dest_station}}</h5>
-            <h5>data:{{i.run_id.date}}</h5>
-            <h5>time:{{i.run_id.time}}</h5>
-            <h5>train:{{i.run_id.train_id}}</h5>
-            <h5>seat:{{i.passenger}}</h5>
-        </p>
-        {% endfor %}
+        <table>
+            <tr>
+                <th>from</th>
+                <th>to</th>
+                <th>date</th>
+                <th>time</th>
+                <th>train_id</th>
+                <th>seat</th>
+            </tr>
+            {% for i in info %}
+            <tr>
+                <form action='/menu/delete_ticket/' name="query_train" method='POST'>
+                    {% csrf_token %}
+                    <tr>
+                        <input type = "hidden" name="id" value={{i.id}}>
+                        <input type = "hidden" name="start" value={{i.run_id.start_station}}><td align="center">{{i.run_id.start_station}}</td>
+                        <input type = "hidden" name="dest" value={{i.run_id.dest_station}}><td align="center">{{i.run_id.dest_station}}</td>
+                        <input type = "hidden" name="date" value={{i.run_id.date}}><td name="dest" align="center">{{i.run_id.date}}</td>
+                        <input type = "hidden" name="time" value={{i.run_id.time}}><td name="date" align="center">{{i.run_id.time}}</td>
+                        <input type = "hidden" name="train_id" value={{i.run_id.train_id}}><td name="time" align="center">{{i.run_id.train_id}}</td>
+                        <input type = "hidden" name="seat" value={{i.passenger}}><td name="seat" align="center">{{i.passenger}}</td>
+                        <td><button type="submit" class="ui blue button">一鍵刪除</button></td>
+                    </tr>
+                </form>
+            </tr>
+            {% endfor %}
+        </table>
     </div>
 
     <div class="fish" id="fish"></div>
