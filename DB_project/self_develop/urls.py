@@ -17,8 +17,6 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.urls import path
 from mainsite import views
-from mainsite import grade
-from mainsite import gpa
 urlpatterns = [
     url(r'^login/$', views.login),
     url(r'^menu/$',views.menu),
