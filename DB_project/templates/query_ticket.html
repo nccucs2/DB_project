@@ -6,179 +6,7 @@
     <meta charset="utf-8">
 
 
-    <!-- <style>
-        body, html{
-       height: 100%;
-       padding: 0;
-       margin: 0;
-       font-family: 'Sniglet', cursive;
-      }
-      h1{
-       font-weight: normal;
-       font-size: 3em;
-       font-family: 'Raleway', sans-serif;
-       margin: 0 auto;
-       margin-top: 30px;
-       width: 500px;
-       color: #F90;
-       text-align: center;
 
-      }
-
-      /* Animation webkit */
-      @-webkit-keyframes myfirst
-      {
-       0% {margin-left: -235px}
-       90% {margin-left: 100%;}
-       100% {margin-left: 100%;}
-      }
-
-      /* Animation */
-      @keyframes myfirst
-      {
-       0% {margin-left: -235px}
-       70% {margin-left: 100%;}
-       100% {margin-left: 100%;}
-      }
-
-      .fish{
-       background-image: url('http://www.geertjanhendriks.nl/codepen/form/fish.png');
-       width: 235px;
-       height: 104px;
-       margin-left: -235px;
-       position: absolute;
-       animation: myfirst 24s;
-       -webkit-animation: myfirst 24s;
-       animation-iteration-count: infinite;
-       -webkit-animation-iteration-count: infinite;
-       animation-timing-function: linear;
-       -webkit-animation-timing-function: linear;
-      }
-
-      #fish{
-       top: 120px;
-      }
-
-      #fish2{
-       top: 260px;
-       animation-delay: 12s;
-       -webkit-animation-delay: 12s;
-      }
-
-      header{
-       height: 160px;
-       background: url('http://www.geertjanhendriks.nl/codepen/form/golf.png') repeat-x bottom;
-      }
-
-      #form{
-       height: 100%;
-       background-color: #98d4f3;
-       overflow: hidden;
-       position: relative;
-
-      }
-      form{
-       margin: 0 auto;
-       width: 500px;
-       padding-top: 40px;
-       color: white;
-       position: relative;
-
-
-      }
-      label, input, textarea{
-       display: block;
-      }
-      input, textarea{
-       width: 500px;
-       border: none;
-       border-radius: 20px;
-       outline: none;
-       padding: 10px;
-       font-family: 'Sniglet', cursive;
-       font-size: 1em;
-       color: #676767;
-       transition: border 0.5s;
-       -webkit-transition: border 0.5s;
-       -moz-transition: border 0.5s;
-       -o-transition: border 0.5s;
-       border: solid 3px #98d4f3;
-       -webkit-box-sizing:border-box;
-       -moz-box-sizing:border-box;
-       box-sizing:border-box;
-
-      }
-      input:focus, textarea:focus{
-       border: solid 3px #77bde0;
-      }
-
-      textarea{
-       height: 100px;
-       resize: none;
-       overflow: auto;
-      }
-      input[type="submit"]{
-       background-color: #F90;
-       color: white;
-       height: 50px;
-       cursor: pointer;
-       margin-top: 30px;
-       font-size: 1.29em;
-       font-family: 'Sniglet', cursive;
-       -webkit-transition: background-color 0.5s;
-       -moz-transition: background-color 0.5s;
-       -o-transition: background-color 0.5s;
-       transition: background-color 0.5s;
-      }
-      input[type="submit"]:hover{
-       background-color: #e58f0e;
-
-      }
-      label{
-       font-size: 1.5em;
-       margin-top: 20px;
-       padding-left: 20px;
-      }
-      body{
-        height: 100%;
-        background-color: #98d4f3;
-        overflow: hidden;
-        position: relative;
-      }
-
-      .formgroup{
-       background-image: url('http://www.geertjanhendriks.nl/codepen/form/pixel.gif');
-      }
-      .formgroup-active{
-       background-image: url('http://www.geertjanhendriks.nl/codepen/form/octo.png');
-      }
-      .formgroup-error{
-       background-image: url('http://www.geertjanhendriks.nl/codepen/form/octo-error.png');
-       color: red;
-      }
-      .content a:link, a:visited {
-          background-color: black;
-          color: white;
-          padding: 10px 50px;
-          text-align: center;
-          text-decoration: none;
-          display: inline-block;
-          border-radius: 25px;
-          margin-right:50px;
-          margin-top:20px;
-      }
-
-
-      .content a:hover, a:active {
-          background-color: #D3D3D3;
-          color:black;
-      }
-      .content{
-        margin-top :40px;
-        font-size: 1em;
-        overflow: hidden;
-      }
-        </style> -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
@@ -188,7 +16,7 @@
     <link rel="stylesheet" type="text/css" href="../../static/css/main.css">
     <link rel="stylesheet" type="text/css" href="../../static/css/util.css">
     <link rel="stylesheet" type="text/css" href="../../static/css/semantic.css">
-    
+
     <style>
     #box {
       background-color:white;
@@ -205,7 +33,7 @@
     }
     #box_location{
 
-     
+
       margin-top: 50px;
       font-size: 15px;
     }
@@ -271,12 +99,12 @@
      #run > tbody > tr:nth-child(odd) {
        background-color: #f0f0f0;
      }
-     .button{
+     /* .button{
        position: relative;
        margin: 0 auto;
        text-align: center;
        bottom: calc(70px - 52vh);
-     }
+     } */
      html, body {
       margin: 0;
       padding: 0;
@@ -286,15 +114,15 @@
 </head>
 
 <body>
-  
-    <!-- <div class="limiter">
-        
-        <div class="container-table100">
-            <div class="wrap-table100">
-                    -->
+  <div id="sector">
+    <div id="sector_location">
+      <p style="color:#ffbf80;margin-left:1%;">我的訂單</p>
+    </div>
+  </div>
+
                 <div id="box">
                     <div id="box_location">
-                <div class="table100 ver1 m-b-110">
+                <div class="table100 ver1 m-b-110" style="width:90%; margin-left:5%;">
                     <div class="table100-head">
                         <table>
                             <thead>
@@ -302,7 +130,7 @@
                                     <th class="cell100 column1">Interval</th>
                                     <th class="cell100 column3">Time</th>
                                     <th class="cell100 column2">train</th>
-                                    
+
                                     <th class="cell100 column4">Seat</th>
                                     <th class="cell100 column5"></th>
                                     <th class="cell100 column6"></th>
@@ -320,10 +148,10 @@
                                     <td class="cell100 column1">{{i.run_id.start_station}} - {{i.run_id.dest_station}}</td>
                                     <td class="cell100 column3">{{i.run_id.date}}, {{i.run_id.time}}</td>
                                     <td class="cell100 column2">{{i.run_id.train_id}}</td>
-                                    
+
                                     <td class="cell100 column4">{{i.passenger}}</td>
-                                    <td class="cell100 column5"><button type="submit"  >Edit</button></td>
-                                    <td class="cell100 column6"><button type="submit"  >Delete</button></td>
+                                    <td class="cell100 column5"><button class="ui blue button" type="submit"  >Edit</button></td>
+                                    <td class="cell100 column6"><button class="ui blue button" type="submit"  >Delete</button></td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
@@ -331,9 +159,8 @@
                     </div>
                 </div>
                 </div>
-            <!-- </div>
-        </div>
-    </div> -->
+              </div>
+          <a href="/menu/" class="ui blue button"  style="margin-left:47.5%;margin-top:50%;">回首頁</button>
 
 </body>
 
