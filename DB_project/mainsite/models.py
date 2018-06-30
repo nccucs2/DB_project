@@ -38,12 +38,12 @@ class Seat(models.Model):
         return str(self.seat_id)
 
 class Ticket(models.Model):
-    passenger = models.ForeignKey(Seat,on_delete=models.CASCADE,default='') 
+    passenger = models.ForeignKey(Seat,on_delete=models.CASCADE,default='')
     run_id = models.ForeignKey(Run,on_delete=models.CASCADE)
     id_phone_num = models.ForeignKey(Passenger,on_delete=models.CASCADE,blank = True,null=True)
 
     def __str__(self):
-        return str(self.name) + " " + str(self.run_id) + " " + str(self.passenger)
+        return str(self.run_id) + " " + str(self.passenger)
 
 
 
