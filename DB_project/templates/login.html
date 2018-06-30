@@ -78,29 +78,29 @@
      left: 130px;
      transform: translate(-50%, -50%);
    }
-   label.ID{
+   label.Phone{
      color:black;
      position: absolute;
-     top: 170px;
+     top: 250px;
      left: 120px;
      transform: translate(-50%, -50%);
    }
    label.PASS{
      color:black;
      position: absolute;
-     top: 200px;
+     top: 180px;
      left: 120px;
      transform: translate(-50%, -50%);
    }
-   #usr_id{
-     position: absolute;
-     top: 200px;
+   #usr_phone{
+     position:absolute;
+     top: 280px;
      left: 185px;
      transform: translate(-50%, -50%);
    }
    #usr_pass{
      position: absolute;
-     top: 250px;
+     top: 210px;
      left: 185px;
      transform: translate(-50%, -50%);
    }
@@ -184,10 +184,17 @@
       <form name='my_form' action='/login/' method='POST' >
           {% csrf_token %}
           <div class="formgroup" id="password-form" >
+
             <label class="PASS" for="usr_pass" style="margin-left:60px;color:black;"><b>身份證號碼/護照號碼</b></label>
             <input type="password" id="usr_pass" name="usr_pass"   autocomplete="off"
             readonly onfocus="this.removeAttribute('readonly')" placeholder="ID">
 
+          </div>
+
+          <div class="formgroup" id="password-form" >
+            <label class="Phone" for="usr_phone" style="margin-left:20px;color:black;"><b>手機號碼</b></label>
+            <input type="text" id="usr_phone" name="usr_phone"   autocomplete="off"
+            readonly onfocus="this.removeAttribute('readonly')" placeholder="Phone">
           </div>
 
           <!-- <a href='/accounts/register'class="ui blue button" style=" width:110px;margin-top:175px;margin-left:115px;border-radius:20px;">register</a> -->
