@@ -121,13 +121,17 @@
         <th align="center" style="width:5%;">時間</th>
     　</tr>
     {% for run in runs %}
+    <form action='/do/' name="query_train" method='POST'>
+      {% csrf_token %}
     <tr>
-      <td align="center">{{run.train_id}}</td>
-      <td align="center">{{run.start_station}}</td>
-      <td align="center">{{run.dest_station}}</td>
-      <td align="center">{{run.date}}</td>
-      <td align="center">{{run.time}}</td>
+      <input type = "hidden" name="id" value={{run.run_id}}><td align="center">{{run.run_id}}</td>
+      <input type = "hidden" name="start" value={{run.start_station}}><td align="center">{{run.start_station}}</td>
+      <input type = "hidden" name="dest" value={{run.dest_station}}><td name="dest" align="center">{{run.dest_station}}</td>
+      <input type = "hidden" name="date" value={{run.date}}><td name="date" align="center">{{run.date}}</td>
+      <input type = "hidden" name="time" value={{run.time}}><td name="time" align="center">{{run.time}}</td>
+      <button type="submit" class="ui blue button" style="position:relative;top:1100px;margin-top:20px;font-size:12px;height:25px; margin-left:900px;">查詢</button>
     </tr>
+</form>
     {% endfor %}
 </table>
 
