@@ -1,14 +1,17 @@
 <html>
-  <head>
-    <title>高鐵時刻表</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-{% load staticfiles %}
-<link rel="stylesheet" href="{%static 'css/semantic.css'%}">
-    <style>
+
+<head>
+  <title>高鐵時刻表</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  {% load staticfiles %}
+  <link rel="stylesheet" href="{%static 'css/semantic.css'%}">
+  <link rel="stylesheet" type="text/css" href="../../static/css/main.css">
+  <link rel="stylesheet" type="text/css" href="../../static/css/util.css">
+  <!-- <style>
     #box {
       background-color:white;
       list-style: none;
@@ -101,41 +104,52 @@
       padding: 0;
       height: 100%;
     }
-      </style>
-<body>
+      </style> -->
+
+  <body>
     <div id="sector">
       <div id="sector_location">
         <p style="color:#ffbf80;margin-left:1%;">選擇結果</p>
 
       </div>
-  </div>
-<div id="box">
-  <div id="box_location">
+    </div>
+   
+    <div class="table100 ver1 m-b-110">
+      <div class="table100-head">
+        <table>
+          <thead>
+            <tr class="row100 head">
+              <th class="cell100 column1">車號</th>
+              <th class="cell100 column2">起點</th>
+              <th class="cell100 column3">終點</th>
+              <th class="cell100 column4">日期</th>
+              <th class="cell100 column5">時間</th>
+              <th class="cell100 column6">訂票</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
 
-<table id="run">
-    　<tr>
-        <th align="center" style="width:5%;">車號</th>
-        <th align="center" style="width:5%;">起點</th>
-        <th align="center" style="width:5%;">終點</th>
-        <th align="center" style="width:10%;">日期</th>
-        <th align="center" style="width:5%;">時間</th>
-    　</tr>
-    {% for run in runs %}
-    <form action='/do/' name="query_train" method='POST'>
-      {% csrf_token %}
-    <tr>
-      <input type = "hidden" name="id" value={{run.run_id}}><td align="center">{{run.run_id}}</td>
-      <input type = "hidden" name="start" value={{run.start_station}}><td align="center">{{run.start_station}}</td>
-      <input type = "hidden" name="dest" value={{run.dest_station}}><td name="dest" align="center">{{run.dest_station}}</td>
-      <input type = "hidden" name="date" value={{run.date}}><td name="date" align="center">{{run.date}}</td>
-      <input type = "hidden" name="time" value={{run.time}}><td name="time" align="center">{{run.time}}</td>
-      <button type="submit" class="ui blue button" style="position:relative;top:1100px;margin-top:20px;font-size:12px;height:25px; margin-left:900px;">一鍵下定</button>
-    </tr>
-</form>
-    {% endfor %}
-</table>
+      <div class="table100-body js-pscroll">
+        <table>
+          <tbody>
 
-</div>
-</div>
-  <a href="/menu/" class="ui blue button"  style="margin-left:47.5%;margin-top:25%;">回首頁</button>
-</body>
+            {% for run in runs %}
+            <tr class="row100 body">
+              <td class="cell100 column1">{{run.train_id}}</td>
+              <td class="cell100 column2">{{run.start_station}}</td>
+              <td class="cell100 column3">{{run.dest_station}}</td>
+              <td class="cell100 column4">{{run.date}}</td>
+              <td class="cell100 column5">{{run.time}}</td>
+              <td class="cell100 column6">
+                <button>訂票</button>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <a href="/menu/" class="ui blue button" style="margin-left:47.5%;margin-top:25%;">回首頁</button>
+  </body>

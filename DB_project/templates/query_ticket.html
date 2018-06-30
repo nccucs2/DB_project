@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Inccu homepage</title>
-        <meta charset="utf-8">
-        <style>
+
+<head>
+    <title>Inccu homepage</title>
+    <meta charset="utf-8">
+
+
+    <!-- <style>
         body, html{
        height: 100%;
        padding: 0;
@@ -175,28 +178,63 @@
         font-size: 1em;
         overflow: hidden;
       }
-        </style>
-    </head>
+        </style> -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
 
-    <h1>GPA</h1>
+    <!--===============================================================================================-->
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../../static/css/main.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/util.css">
+</head>
 
-    <div>
-        {% for i in info %}
-        <p>
-            <h5>from:{{i.run_id.start_station}}</h5>
-            <h5>to:{{i.run_id.dest_station}}</h5>
-            <h5>data:{{i.run_id.date}}</h5>
-            <h5>time:{{i.run_id.time}}</h5>
-            <h5>train:{{i.run_id.train_id}}</h5>
-            <h5>seat:{{i.passenger}}</h5>
-        </p>
-        {% endfor %}
-    </div>
+<body>
+  
+    <!-- <div class="limiter">
+        
+        <div class="container-table100">
+            <div class="wrap-table100">
+                    -->
+                <div class="table100 ver1 m-b-110">
+                    <div class="table100-head">
+                        <table>
+                            <thead>
+                                <tr class="row100 head">
+                                    <th class="cell100 column1">From</th>
+                                    <th class="cell100 column2">To</th>
+                                    <th class="cell100 column3">Date</th>
+                                    <th class="cell100 column4">Time</th>
+                                    <th class="cell100 column5">train</th>
+                                    <th class="cell100 column6">Seat</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
 
-    <div class="fish" id="fish"></div>
-    <div class="fish" id="fish2"></div>
+                    <div class="table100-body js-pscroll">
+                        <table>
+                            <tbody>
 
+                                {% for i in info %}
+                                <tr class="row100 body">
+                                    <td class="cell100 column1">{{i.run_id.start_station}}</td>
+                                    <td class="cell100 column2">{{i.run_id.dest_station}}</td>
+                                    <td class="cell100 column3">{{i.run_id.date}}</td>
+                                    <td class="cell100 column4">{{i.run_id.time}}</td>
+                                    <td class="cell100 column5">{{i.run_id.train_id}}</td>
+                                    <td class="cell100 column6">{{i.passenger}}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            <!-- </div>
+        </div>
+    </div> -->
 
+</body>
 
 
 </html>
