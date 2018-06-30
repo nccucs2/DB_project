@@ -9,6 +9,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from mainsite.models import Passenger,Train,Run,Ticket,Station,Seat,Pass
+import random
 # from mainsite.models import student_info
 import string
 def login(request):
@@ -113,8 +114,22 @@ def train_query(request):
     return render(request,'train_query.html',{'station':station})
 
 def new_ticket(request):
-
-    return render(request,'new_ticket.html')
+    if request.POST:
+        try:
+            a = Passenger.objects.get(name=request.user)
+            if a.phone_number!=request.POST['phone_number']:
+                a.phone_number=request.POST['phone_number']
+                a.save()
+        except:
+            Passenger.objects.create(name=request.user,phone_number=request.POST['phone_number'])
+        train=Run.objects.get(run_id=request.POST['train_id'])
+        seat=Seat.objects.filter(train_id=train.train_id,booked=True)
+        random_num=random.randint(0,len(seat))
+        Ticket.objects.create(passenger=seat[random_num],name=request.POST['username'],run_id=Run.objects.get(run_id=request.POST['train_id']),id_phone_num=Passenger.objects.get(name=request.user))
+        seat[random_num].booked=False
+        seat[random_num].save()
+    runs = Run.objects.all()
+    return render(request,'new_ticket.html',{'runs':runs})
 
 def query_ticket(request):
 
