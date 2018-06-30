@@ -26,7 +26,7 @@ def login(request):
         user = auth.authenticate(username=password, password=password)
         if user is not None:
             try:
-                old_phone = Passenger.objects.filter(name=request.user)
+                old_phone = Passenger.objects.get(name=user)
                 if old_phone.phone_number!=phone_number:
                     old_phone.phone_number=phone_number
                     old_phone.save()
@@ -153,6 +153,10 @@ def query_ticket(request):
 
 def delete_ticket(request):
     ticket = Ticket.objects.get(id=request.POST['id'])
+    p=Seat.objects.get(id=ticket.passenger.id)
+    p.booked=True
+    p.save()
+    print(p.booked)
     ticket.delete()
     return HttpResponseRedirect('/menu/query_ticket/')
 

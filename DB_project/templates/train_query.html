@@ -80,18 +80,17 @@
       <label class='start' for='start' name='start'>起點</label>
       <select name="start">
         <option>--</option>
-        {% for i in station %}
-        {{i.name}}
-　       <option>{{i.name}}</option>
-          {% endfor %}
+        <option>台北</option>
+        <option>南港</option>
+        <option>台中</option>
+        <option>左營</option>
         </select>
       <label class='finish' for='finish' name=finish>終點</label>
       <select name="finish">
         <option>--</option>
-        {% for i in station %}
-        {{i.name}}
-    　   <option>{{i.name}}</option>
-          {% endfor %}
+        <option>南港</option>
+        <option>台中</option>
+        <option>左營</option>
     </select>
     <label class='time' for='time'>時間</label>
     <select name="time">
