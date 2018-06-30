@@ -6,53 +6,132 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script>
-</script>
+{% load staticfiles %}
+<link rel="stylesheet" href="{%static 'css/semantic.css'%}">
     <style>
-    table{
-      margin-left:50px;
-      width:1800px;
-    }
-    tr{
-      height:40px;
-      position:relative;
-    }
-    td{
-      color: #009FCC;
-    }
-    td:hover{
-      color:white;
-      background-color:#009FCC;
-    }
-    h1{
-      color:#FF5511;
-    }
-    button{
+    #box {
+      background-color:white;
+      list-style: none;
+      overflow: hidden;
       position:absolute;
-      margin-top:-40px;
-      left:90%;
-      font-size:10px;
+      width:1050px;
+      height:500px;
+      top: 55%; right: 50%;
+      transform: translate(50%,-50%);
+      border-radius:20px;
+      box-shadow: 0px 0px 20px 0px #a6a6a6;
+      overflow: auto;
+    }
+    #box_location{
+
+      margin-left: 50px;
+      margin-top: 50px;
+      font-size: 15px;
+    }
+    #sector {
+      background-color:white;
+      list-style: none;
+      /* overflow: hidden; */
+      position:absolute;
+      width:180px;
+      height:180px;
+      top: 25%;
+      margin-left: 10%;
+      transform: translate(50%,-50%);
+      border-radius:50%;
+      box-shadow: 0px 0px 20px 0px #a6a6a6;
+    }
+    #sector_location{
+      margin-left:25%;
+      margin-top:25%;
+      font-size: 25px;
+      font-weight: bold;
+
+    }
+    .block{
+      width:300px;
+      height:300px;
+    }
+    #run{
+      font-size:20px;
+      width:90%;
+      margin-left:40px;
+
+    }
+    #average{
+        font-size:20px;
+      width:25%;
+      margin-left:50px;
+    }
+    #text{
+      font-size:20px;
+      width:25%;
+      margin-left:50px;
+    }
+    th {
+      /* width:90% */
+      color:#2185D0;
+      /* color:#00C2C2; */
+      /* border: 1px solid #dddddd; */
+      /* border: 1px solid #2185D0; */
+      font-size: 15px;
+      text-align: left;
+      padding: 12px;
+
+     }
+     td{
+       font-size: 15px;
+       color:black;
+       /* border: 1px solid #dddddd; */
+       text-align: left;
+       padding: 12px;
+     }
+
+     #run > tbody > tr:nth-child(odd) {
+       background-color: #f0f0f0;
+     }
+     .button{
+       position: relative;
+       margin: 0 auto;
+       text-align: center;
+       bottom: calc(70px - 52vh);
+     }
+     html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
     }
       </style>
-    <h1>
-      您的搜尋結果如下
-    </h1>
-    <button class="btn btn-Success" >回上一頁</button>
-<table >
-　<tr>
-  <td align="center">車號</td>
-  <td align="center">起點</td>
-  <td align="center">終點</td>
-  <td align="center">日期</td>
-  <td align="center">時間</td>
-　</tr>
-{% for run in runs %}
-<tr>
-<td align="center">{{run.train_id}}</td>
-<td align="center">{{run.start_station}}</td>
-<td align="center">{{run.dest_station}}</td>
-<td align="center">{{run.date}}</td>
-<td align="center">{{run.time}}</td>
-</tr>
-{% endfor %}
+<body>
+    <div id="sector">
+      <div id="sector_location">
+        <p style="color:#ffbf80;margin-left:1%;">選擇結果</p>
+
+      </div>
+  </div>
+<div id="box">
+  <div id="box_location">
+
+<table id="run">
+    　<tr>
+        <th align="center" style="width:5%;">車號</th>
+        <th align="center" style="width:5%;">起點</th>
+        <th align="center" style="width:5%;">終點</th>
+        <th align="center" style="width:10%;">日期</th>
+        <th align="center" style="width:5%;">時間</th>
+    　</tr>
+    {% for run in runs %}
+    <tr>
+      <td align="center">{{run.train_id}}</td>
+      <td align="center">{{run.start_station}}</td>
+      <td align="center">{{run.dest_station}}</td>
+      <td align="center">{{run.date}}</td>
+      <td align="center">{{run.time}}</td>
+    </tr>
+    {% endfor %}
 </table>
+
+</div>
+</div>
+  <a href="/menu/" class="ui blue button"  style="margin-left:47.5%;margin-top:25%;">回首頁</button>
+</body>
