@@ -104,6 +104,17 @@ def menu(request):
     else:
         return HttpResponseRedirect('/login/')
 
+def do(request):
+    if request.POST:
+        print(request.POST['id'])
+        train=Run.objects.get(run_id=request.POST['id'])
+        seat=Seat.objects.filter(train_id=train.train_id,booked=True)
+        random_num=random.randint(0,len(seat))
+        Ticket.objects.create(passenger=seat[random_num],run_id=Run.objects.get(run_id=request.POST['id']),id_phone_num=Passenger.objects.get(name=request.user))
+        seat[random_num].booked=False
+        seat[random_num].save()
+    return HttpResponseRedirect('/menu/train_query/')
+
 def train_query(request):
     if request.POST:
         start = request.POST['start']
@@ -121,34 +132,15 @@ def train_query(request):
             p = p.filter(date=date)
         for i in p :
             print(i)
-        # return render(request,'train_run.html',{'runs':p})
-        train_run = "車號"
-        train_start="起點"
-        train_dest="終點"
-        train_date="日期"
-        train_time="時間"
-        return render(request,'train_run.html',{'runs':p},locals())
+            # return render(request,'train_run.html',{'runs':p})
+            train_run = "車號"
+            train_start="起點"
+            train_dest="終點"
+            train_date="日期"
+            train_time="時間"
+            return render(request,'train_run.html',{'runs':p},locals())
     station = Station.objects.all()
     return render(request,'train_query.html',{'station':station})
-
-def new_ticket(request):
-    print(request.user)
-    if request.POST:
-        try:
-            a = Passenger.objects.get(name=request.user)
-            if a.phone_number!=request.POST['phone_number']:
-                a.phone_number=request.POST['phone_number']
-                a.save()
-        except:
-            Passenger.objects.create(name=request.user,phone_number=request.POST['phone_number'])
-        train=Run.objects.get(run_id=request.POST['train_id'])
-        seat=Seat.objects.filter(train_id=train.train_id,booked=True)
-        random_num=random.randint(0,len(seat))
-        Ticket.objects.create(passenger=seat[random_num],name=request.POST['username'],run_id=Run.objects.get(run_id=request.POST['train_id']),id_phone_num=Passenger.objects.get(name=request.user))
-        seat[random_num].booked=False
-        seat[random_num].save()
-    runs = Run.objects.all()
-    return render(request,'new_ticket.html',{'runs':runs})
 
 def query_ticket(request):
     info_list=[]
