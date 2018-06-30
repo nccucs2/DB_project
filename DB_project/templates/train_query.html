@@ -7,63 +7,74 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script> -->
+  {% load staticfiles %}
+  <link rel="stylesheet" href="{%static 'css/semantic.css'%}">
         <style>
-        body, html{
-       height: 100%;
-       padding: 0;
-       margin: 0;
-       font-family: 'Sniglet', cursive;
-      }
-      h1{
-        left:45%;
-        margin-left:-30px;
-        margin-top:20px;
-        position:absolute;
-      }
-      form{
-        width:1500px;
-        height:200px;
-        margin-left:30px;
-        margin-top:50px;
-        position:absolute;
-      }
-      select{
-        margin-left:120px;
-        margin-top: 30px;
-        background-color:transparent;
-        box-shadow:0px 0px 5px 0px;
-        height:50px;
-        width:1500px;
-        font-size:20px;
-        position:relative;
-      }
-      option{
-        margin-left:120px;
-        height:60px;
-        font-size:20px;
-        color:gray;
-        position:relative;
-      }
-      label{
-        top:20px;
-        margin-left:120px;
-        font-size:30px;
-        position:relative;
-        color:red;
-      }
-      button{
-        position: absolute;
-        left:45%;
-        margin-top:50px;
-        border-radius:20px;
-        width:400px;
-        height:60px;
-      }
+        #box {
+          background-color:white;
+          /* list-style: none; */
+          /* overflow: hidden; */
+
+          position:absolute;
+          /* width:700px; */
+          /* height: 3200px; */
+          /* height:500px; */
+          height:15%;
+          top: 35%; right: 50%;
+          transform: translate(50%,-50%);
+          border-radius:20px;
+          box-shadow: 0px 0px 20px 0px #a6a6a6;
+          font-size: 20px;
+          width:1050px;
+        }
+        #box_location{
+
+          /* margin-left: 385px;
+          margin-top: 200px; */
+          /* top:50%;
+          left:50%; */
+          margin-left: 3%;
+          margin-top: 1%;
+          font-size: 20px;
+        }
+        #sector {
+          background-color:white;
+          list-style: none;
+          /* overflow: hidden; */
+          position:absolute;
+          width:180px;
+          height:180px;
+          top: 25%;
+          margin-left: 10%;
+          transform: translate(50%,-50%);
+          border-radius:50%;
+          box-shadow: 0px 0px 20px 0px #a6a6a6;
+        }
+        #sector_location{
+          margin-left:25%;
+          font-size: 25px;
+          margin-top:35%;
+          font-weight: bold;
+
+        }
+        .block{
+          width:300px;
+          height:300px;
+        }
+
         </style>
     </head>
+    <div id="sector">
+      <div id="sector_location">
+        <p style="color:#ffbf80;margin-left:3%;"> 班次查詢 </p>
 
-    <h1> 班次查詢 </h1>
+        <!-- <a href="/menu/" class="ui blue button" style="width:120px;border-radius:20px;">回首頁 </a> -->
+        </div>
+    </div>
 
+   <div id="box">
+     <div id="box_location">
     <form name="query_train" method='POST'>
       {% csrf_token %}
       <label class='start' for='start' name='start'>起點</label>
@@ -97,9 +108,11 @@
        <option>2018-06-29</option>
        <option>2018-06-30</option>
   </select>
-      <button type="submit" class="btn btn-primary" style="font-size:30px;">查詢</button>
+      <button type="submit" class="ui blue button" style="font-size:15px; margin-left:20px;">查詢</button>
+
+      <a href="/menu/" class="ui blue button" style="width:120px;border-radius:20px;margin-top:4%;background-color:#00C2C2; margin-left:40px;">回首頁 </a>
   </form>
-
-
+</div>
+</div>
 
 </html>

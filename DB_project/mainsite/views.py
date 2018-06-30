@@ -107,8 +107,13 @@ def train_query(request):
             p = p.filter(date=date)
         for i in p :
             print(i)
-        return render(request,'train_run.html',{'runs':p})
-
+        # return render(request,'train_run.html',{'runs':p})
+        train_run = "車號"
+        train_start="起點"
+        train_dest="終點"
+        train_date="日期"
+        train_time="時間"
+        return render(request,'train_run.html',{'runs':p},locals())
     station = Station.objects.all()
     return render(request,'train_query.html',{'station':station})
 
