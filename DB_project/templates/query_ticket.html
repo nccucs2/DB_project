@@ -183,11 +183,12 @@
     <div>
         {% for i in info %}
         <p>
-            <h5>from:{{i.start_station}}</h5>
-            <h5>to:{{i.dest_station}}</h5>
-            <h5>data:{{i.date}}</h5>
-            <h5>time:{{i.time}}</h5>
-            <h5>train:{{i.train_id}}</h5>
+            <h5>from:{{i.run_id.start_station}}</h5>
+            <h5>to:{{i.run_id.dest_station}}</h5>
+            <h5>data:{{i.run_id.date}}</h5>
+            <h5>time:{{i.run_id.time}}</h5>
+            <h5>train:{{i.run_id.train_id}}</h5>
+            <h5>seat:{{i.passenger}}</h5>
         </p>
         {% endfor %}
     </div>
