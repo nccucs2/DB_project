@@ -17,17 +17,29 @@ def login(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect('/menu/')
     try:
-        # username = request.POST['usr_id']
 
         password = request.POST['usr_pass']
-        user = auth.authenticate(username=password, password=password)
+        phone_number = request.POST['usr_phone']
+        # print(phone_number)
 
-        if user is None:
+
+        user = auth.authenticate(username=password, password=password)
+        if user is not None:
+            try:
+                old_phone = Passenger.objects.filter(name=request.user)
+                if old_phone.phone_number!=phone_number:
+                    old_phone.phone_number=phone_number
+                    old_phone.save()
+            except:
+                Passenger.objects.create(name=user,phone_number=phone_number)
+
+
+        elif user is None:
 
             code = [10,11,12,13,14,15,16,17,34,18,19,20,21,22,35,23,24,25,26,27,28,29,32,30,31,33]
             alphabet=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
 
-            # create the location mapping code for char of ID
+                # create the location mapping code for char of ID
             locationCode = dict(zip(alphabet,code))
 
             id = password
@@ -36,7 +48,7 @@ def login(request):
             or not(id[1:].isdigit()or(int[id[1] > 2 or id[1] < 1])):
 
                 user = None
-                # Convert 1st Alphabet to Numeric code
+                    # Convert 1st Alphabet to Numeric code
             else:
                 print(id)
                 encodeID = list(str(locationCode[id[0].upper()]))
@@ -44,7 +56,7 @@ def login(request):
                 encodeID.extend(list(id[1:]))
                 checkSum = int(encodeID[0])
 
-                    # Calculate the checksum of ID
+                        # Calculate the checksum of ID
 
                 para = 9
                 for n in encodeID[1:]:
@@ -54,8 +66,8 @@ def login(request):
                     checkSum += int(n)*para
                     para -= 1
 
-                # Check the checksum
-                # print(id)
+                    # Check the checksum
+                    # print(id)
                 if checkSum % 10 == 0:
                     print("ID is correct")
 
@@ -66,12 +78,13 @@ def login(request):
 
                     user=None
 
+
     except:
-
         user = None
+        phone_number = None
 
-
-    if user is not None:
+    if (user is not None) and (phone_number is not None):
+        print(phone_number)
         if user.is_active:
             auth.login(request,user)
             return HttpResponseRedirect('/menu/')
