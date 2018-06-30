@@ -25,5 +25,6 @@ urlpatterns = [
     url(r'^do/$',views.do),
     url(r'^menu/modify_ticket/$',views.modify_ticket),
     url(r'^menu/query_ticket/$',views.query_ticket),
+    url(r'^menu/delete_ticket/$',views.delete_ticket),
     url(r'^menu/train_query/$',views.train_query),
 ]

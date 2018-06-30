@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Inccu homepage</title>
+        <meta charset="utf-8">
+        {% load staticfiles %}
+        <link rel="stylesheet" href="{%static 'css/semantic.css'%}">
+        <style>
+        #box {
+          background-color:white;
+          list-style: none;
+          overflow: hidden;
+          position:absolute;
+          width:1050px;
+          height:500px;
+          top: 55%; right: 50%;
+          transform: translate(50%,-50%);
+          border-radius:20px;
+          box-shadow: 0px 0px 20px 0px #a6a6a6;
+          overflow: auto;
+        }
+        #box_location{
+
+          margin-left: 50px;
+          margin-top: 50px;
+          font-size: 15px;
+        }
+        #sector {
+          background-color:white;
+          list-style: none;
+          /* overflow: hidden; */
+          position:absolute;
+          width:180px;
+          height:180px;
+          top: 25%;
+          margin-left: 10%;
+          transform: translate(50%,-50%);
+          border-radius:50%;
+          box-shadow: 0px 0px 20px 0px #a6a6a6;
+        }
+        #sector_location{
+          margin-left:25%;
+          margin-top:25%;
+          font-size: 25px;
+          font-weight: bold;
+
+        }
+        .block{
+          width:300px;
+          height:300px;
+        }
+        #Ticket{
+          font-size:20px;
+          width:90%;
+          margin-left:40px;
+
+        }
+        #average{
+            font-size:20px;
+          width:25%;
+          margin-left:50px;
+        }
+        #text{
+          font-size:20px;
+          width:25%;
+          margin-left:50px;
+        }
+        th {
+          /* width:90% */
+          color:#2185D0;
+          /* color:#00C2C2; */
+          /* border: 1px solid #dddddd; */
+          /* border: 1px solid #2185D0; */
+          font-size: 15px;
+          text-align: left;
+          padding: 12px;
+
+         }
+         td{
+           font-size: 15px;
+           color:black;
+           /* border: 1px solid #dddddd; */
+           text-align: left;
+           padding: 12px;
+         }
+
+         #Ticket > tbody > tr:nth-child(odd) {
+           background-color: #f0f0f0;
+         }
+         .button{
+           position: relative;
+           margin: 0 auto;
+           text-align: center;
+           bottom: calc(70px - 52vh);
+         }
+         html, body {
+          margin: 0;
+          padding: 0;
+          height: 100%;
+        }
+        </style>
+
+    <div>
+        <table>
+            <tr>
+                <th>from</th>
+                <th>to</th>
+                <th>date</th>
+                <th>time</th>
+                <th>train_id</th>
+                <th>seat</th>
+            </tr>
+            {% for i in info %}
+            <tr>
+                <form action='/menu/delete_ticket/' name="query_train" method='POST'>
+                    {% csrf_token %}
+                    <tr>
+                        <input type = "hidden" name="id" value={{i.id}}>
+                        <input type = "hidden" name="start" value={{i.run_id.start_station}}><td align="center">{{i.run_id.start_station}}</td>
+                        <input type = "hidden" name="dest" value={{i.run_id.dest_station}}><td align="center">{{i.run_id.dest_station}}</td>
+                        <input type = "hidden" name="date" value={{i.run_id.date}}><td name="dest" align="center">{{i.run_id.date}}</td>
+                        <input type = "hidden" name="time" value={{i.run_id.time}}><td name="date" align="center">{{i.run_id.time}}</td>
+                        <input type = "hidden" name="train_id" value={{i.run_id.train_id}}><td name="time" align="center">{{i.run_id.train_id}}</td>
+                        <input type = "hidden" name="seat" value={{i.passenger}}><td name="seat" align="center">{{i.passenger}}</td>
+                        <td><button type="submit" class="ui blue button">一鍵刪除</button></td>
+                    </tr>
+                </form>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+  </div>
+   <div id="box">
+    <div id="box_location">
+
+        <table id='Ticket'>
+          <tr>
+
+            <th>起點</th>
+            <th>終點</th>
+            <th>日期</th>
+            <th>時間</th>
+            <th>車號</th>
+            <th>座位</th>
+          </tr>
+          {% for i in info %}
+          <tr>
+            <td>{{i.run_id.start_station}}</td>
+            <td>{{i.run_id.dest_station}}</td>
+            <td>{{i.run_id.date}}</td>
+            <td>{{i.run_id.time}}</td>
+            <td>{{i.run_id.train_id}}</td>
+            <td>{{i.passenger}}</td>
+          </tr>
+          {% endfor %}
+        </table>
+
+    </div>
+  </div>
+
+
+
+
+</body>
+</html>
