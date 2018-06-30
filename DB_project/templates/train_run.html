@@ -9,6 +9,8 @@
 {% load staticfiles %}
 
 <link rel="stylesheet" href="{%static 'css/semantic.css'%}">
+
+
     <style>
     #box {
       background-color:white;
@@ -71,12 +73,12 @@
     }
     th {
       /* width:90% */
-      color:#2185D0;
+      color:#6d7bd9;
       /* color:#00C2C2; */
       /* border: 1px solid #dddddd; */
       /* border: 1px solid #2185D0; */
       font-size: 15px;
-      text-align: left;
+      text-align: center;
       padding: 12px;
 
      }
@@ -84,14 +86,15 @@
        font-size: 15px;
        color:black;
        /* border: 1px solid #dddddd; */
-       text-align: left;
+       text-align: center;
+
        padding: 12px;
      }
 
-     #run > tbody > tr:nth-child(odd) {
-       background-color: #f0f0f0;
-     }
-     /* .button{
+       #run > tbody > tr:nth-child(odd) {
+         background-color: #f0f0f0;
+       }
+       /* .button{
        position: relative;
        margin: 0 auto;
        text-align: center;
@@ -103,6 +106,9 @@
       height: 100%;
     }
       </style>
+      <link rel="stylesheet" href="{%static 'css/main.css'%}">
+      <link rel="stylesheet" href="{%static 'css/util.css'%}">
+
 <body>
     <div id="sector">
       <div id="sector_location">
@@ -112,33 +118,58 @@
   </div>
 <div id="box">
   <div id="box_location">
+    <div class="table100 ver1 m-b-110" style="width:90%; margin-left:5%;">
+        <div class="table100-head">
+<table >
+  <thead>
+    　<!-- <tr class="row100 head"> -->
+      <tr >
+        <th align="center"  class="cell100 column1">車號</th>
+        <th align="center"  class="cell100 column3">起點</th>
+        <th align="center"  class="cell100 column2">終點</th>
+        <th align="center"  class="cell100 column4">日期</th>
+        <th align="center"  class="cell100 column5">時間</th>
+        <th align="center" class="cell100 column6"></th>
+        <!-- <th align="center" style="width:5%;" >車號</th>
+        <th align="center" style="width:5%;" >起點</th>
+        <th align="center" style="width:5%;" >終點</th>
+        <th align="center" style="width:10%;" >日期</th>
+        <th align="center" style="width:5%;" >時間</th>
+        <th align="center" style="width:10%;" ></th> -->
+        <!-- <th align="center" >車號</th>
+        <th align="center"  >起點</th>
+        <th align="center"  >終點</th>
+        <th align="center"  >日期</th>
+        <th align="center"  >時間</th>
+        <th align="center" ></th> -->
+        </tr>
+      </thead>
+    </table>
+  </div>
 
-<table id="run">
-    　<tr>
-        <th align="center" style="width:5%;">車號</th>
-        <th align="center" style="width:5%;">起點</th>
-        <th align="center" style="width:5%;">終點</th>
-        <th align="center" style="width:10%;">日期</th>
-        <th align="center" style="width:5%;">時間</th>
-        <th align="center" style="width:10%;"></th>
-    　</tr>
+    <!-- <div class="table100-body js-pscroll"> -->
+      <table>
+        <tbody>
     {% for run in runs %}
+
     <form action='/do/' name="query_train" method='POST'>
         {% csrf_token %}
-        <tr>
-          <input type = "hidden" name="id" value={{run.run_id}}><td align="center">{{run.run_id}}</td>
-          <input type = "hidden" name="start" value={{run.start_station}}><td align="center">{{run.start_station}}</td>
-          <input type = "hidden" name="dest" value={{run.dest_station}}><td name="dest" align="center">{{run.dest_station}}</td>
-          <input type = "hidden" name="date" value={{run.date}}><td name="date" align="center">{{run.date}}</td>
-          <input type = "hidden" name="time" value={{run.time}}><td name="time" align="center">{{run.time}}</td>
-          <td><button type="submit" class="ui blue button" style="">訂單選擇</button></td>
+        <tr class="row100 body">
+          <input type = "hidden" name="id" value={{run.run_id}}><td align="center" class="cell100 column1">{{run.run_id}}</td>
+          <input type = "hidden" name="start" value={{run.start_station}}><td align="center" class="cell100 column3">{{run.start_station}}</td>
+          <input type = "hidden" name="dest" value={{run.dest_station}}><td name="dest" align="center" class="cell100 column2">{{run.dest_station}}</td>
+          <input type = "hidden" name="date" value={{run.date}}><td name="date" align="center" class="cell100 column4">{{run.date}}</td>
+          <input type = "hidden" name="time" value={{run.time}}><td name="time" align="center" class="cell100 column5">{{run.time}}</td>
+          <td class="cell100 column6"><button type="submit" class="ui blue button" style="">訂單選擇</button></td>
         </tr>
     </form>
     {% endfor %}
+  </tbody>
 </table>
 
+<!-- </div> -->
 </div>
-</div>
+</div></div>
   <a href="/menu/" class="ui blue button"  style="margin-left:47.5%;margin-top:50%;">回首頁</button>
 
 </body>
