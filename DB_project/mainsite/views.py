@@ -114,6 +114,7 @@ def train_query(request):
     return render(request,'train_query.html',{'station':station})
 
 def new_ticket(request):
+    print(request.user)
     if request.POST:
         try:
             a = Passenger.objects.get(name=request.user)
@@ -135,5 +136,6 @@ def query_ticket(request):
     return render(request,'query_ticket.html')
 
 def modify_ticket(request):
-    return render(request,'modify_ticket.html')
+    myticket = Ticket.objects.filter(id_phone_num__name=request.user)
+    return render(request,'modify_ticket.html',{'myticket':myticket})
 # Create your views here.
