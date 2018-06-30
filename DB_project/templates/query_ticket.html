@@ -180,6 +180,18 @@
 
     <h1>GPA</h1>
 
+    <div>
+        {% for i in info %}
+        <p>
+            <h5>from:{{i.start_station}}</h5>
+            <h5>to:{{i.dest_station}}</h5>
+            <h5>data:{{i.date}}</h5>
+            <h5>time:{{i.time}}</h5>
+            <h5>train:{{i.train_id}}</h5>
+        </p>
+        {% endfor %}
+    </div>
+
     <div class="fish" id="fish"></div>
     <div class="fish" id="fish2"></div>
 
