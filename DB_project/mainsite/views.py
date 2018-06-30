@@ -161,7 +161,15 @@ def delete_ticket(request):
     return HttpResponseRedirect('/menu/query_ticket/')
 
 def modify_ticket(request):
-    ticket = Ticket.objects.get(id=request.POST['id'])
+    ticket = Ticket.objects.get(id=request.POST['original_id'])
+    ticket.delete()
+
+    train=Run.objects.get(run_id=request.POST['id'])
+    seat=Seat.objects.filter(train_id=train.train_id,booked=True)
+    random_num=random.randint(0,len(seat))
+    Ticket.objects.create(passenger=seat[random_num],run_id=Run.objects.get(run_id=request.POST['id']),id_phone_num=Passenger.objects.get(name=request.user))
+    seat[random_num].booked=False
+    seat[random_num].save()
 
     return render(request,'modify_ticket.html',{'myticket':myticket})
 # Create your views here.
