@@ -130,16 +130,13 @@ def train_query(request):
     return render(request,'train_query.html',{'station':station})
 
 def query_ticket(request):
-
-    q = Ticket.objects.all()
-    q = q.filter(id_phone_num__name=request.user.name)
-    r = Run.objects.all()
     info_list=[]
-    for i in q:
-        run_info = r.filter(run_id=q.run_id)
-        info_list.append(run_info)
-
-    return render(request,'query_ticket.html',{'info':info_list})
+    try:
+        q = Ticket.objects.all()
+        q = q.filter(id_phone_num__name=request.user.name)
+    except:
+        info_list=[]
+    return render(request,'query_ticket.html',{'info':q})
 
 def modify_ticket(request):
     myticket = Ticket.objects.filter(id_phone_num__name=request.user)
