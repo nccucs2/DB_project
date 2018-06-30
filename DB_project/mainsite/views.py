@@ -113,6 +113,7 @@ def train_query(request):
     return render(request,'train_query.html',{'station':station})
 
 def new_ticket(request):
+
     return render(request,'new_ticket.html')
 
 def query_ticket(request):

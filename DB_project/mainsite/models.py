@@ -31,7 +31,6 @@ class Run(models.Model):
 
 
 class Ticket(models.Model):
-    ticket_id = models.CharField(max_length=20)
     name = models.CharField(max_length=20)
     run_id = models.ForeignKey(Run,on_delete=models.CASCADE)
     id_phone_num = models.ForeignKey(Passenger,on_delete=models.CASCADE,blank = True,null=True)

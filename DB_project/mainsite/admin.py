@@ -16,7 +16,7 @@ class RunAdmin(admin.ModelAdmin):
 admin.site.register(Run,RunAdmin)
 
 class TicketAdmin(admin.ModelAdmin):
-    list_display =('ticket_id','name','run_id','id_phone_num')
+    list_display =('name','run_id','id_phone_num')
 admin.site.register(Ticket,TicketAdmin)
 
 class StationAdmin(admin.ModelAdmin):
