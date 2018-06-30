@@ -66,38 +66,18 @@
 
     <form name="query_train" method='POST'>
       {% csrf_token %}
-      <label class='start' for='start' name='start'>名字</label>
-      <select name="start">
+      <label class='username' for='username'>名字</label>
+      <input type="text"name='username'><br></br>
+      <label class='phone_number' for='phone_number'>電話號碼</label>
+      <input type="text"  name="phone_number"><br></br>
+      <label class='train_id' for='train_id'>車號</label>
+      <select name="train_id">
         <option>--</option>
-        {% for i in station %}
-        {{i.name}}
-　       <option>{{i.name}}</option>
-          {% endfor %}
-        </select>
-      <label class='finish' for='finish' name=finish>終點</label>
-      <select name="finish">
-        <option>--</option>
-        {% for i in station %}
-        {{i.name}}
-    　   <option>{{i.name}}</option>
+        {% for i in runs %}
+    　   <option>{{i.run_id}}</option>
           {% endfor %}
     </select>
-    <label class='time' for='time'>時間</label>
-    <select name="time">
-      <option>--</option>
-      <option>08:00:00</option>
-      <option>12:00:00</option>
-      <option>16:00:00</option>
-      <option>20:00:00</option>
-      </select>
-    <label class='date' for='date'>日期</label>
-    <select name="date">
-      <option>--</option>
-  　   <option>2018-06-28</option>
-       <option>2018-06-29</option>
-       <option>2018-06-30</option>
-  </select>
-      <button type="submit" class="btn btn-primary" style="font-size:30px;">查詢</button>
+      <button type="submit" class="btn btn-primary" style="font-size:30px;">確認訂單</button>
   </form>
 
 
