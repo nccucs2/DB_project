@@ -66,11 +66,15 @@
 
     <form name="query_train" method='POST'>
       {% csrf_token %}
-      <label class='train_id' for='train_id'>選擇訂單</label>
+      <label class='username' for='username'>名字</label>
+      <input type="text"name='username'><br></br>
+      <label class='phone_number' for='phone_number'>電話號碼</label>
+      <input type="text"  name="phone_number"><br></br>
+      <label class='train_id' for='train_id'>車號</label>
       <select name="train_id">
         <option>--</option>
-        {% for i in myticket %}
-    　   <option>{{i}}</option>
+        {% for i in runs %}
+    　   <option>{{i.run_id}}</option>
           {% endfor %}
     </select>
       <button type="submit" class="btn btn-primary" style="font-size:30px;">確認訂單</button>

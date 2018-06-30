@@ -9,6 +9,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from mainsite.models import Passenger,Train,Run,Ticket,Station,Seat,Pass
+import random
 # from mainsite.models import student_info
 import string
 def login(request):
@@ -117,12 +118,38 @@ def train_query(request):
     station = Station.objects.all()
     return render(request,'train_query.html',{'station':station})
 
-def delete_ticket(request):
-    return render(request,'delete_ticket.html')
+def new_ticket(request):
+    print(request.user)
+    if request.POST:
+        try:
+            a = Passenger.objects.get(name=request.user)
+            if a.phone_number!=request.POST['phone_number']:
+                a.phone_number=request.POST['phone_number']
+                a.save()
+        except:
+            Passenger.objects.create(name=request.user,phone_number=request.POST['phone_number'])
+        train=Run.objects.get(run_id=request.POST['train_id'])
+        seat=Seat.objects.filter(train_id=train.train_id,booked=True)
+        random_num=random.randint(0,len(seat))
+        Ticket.objects.create(passenger=seat[random_num],name=request.POST['username'],run_id=Run.objects.get(run_id=request.POST['train_id']),id_phone_num=Passenger.objects.get(name=request.user))
+        seat[random_num].booked=False
+        seat[random_num].save()
+    runs = Run.objects.all()
+    return render(request,'new_ticket.html',{'runs':runs})
 
 def query_ticket(request):
-    return render(request,'query_ticket.html')
+
+    q = Ticket.objects.all()
+    q = q.filter(id_phone_num__name=request.user.name)
+    r = Run.objects.all()
+    info_list=[]
+    for i in q:
+        run_info = r.filter(run_id=q.run_id)
+        info_list.append(run_info)
+
+    return render(request,'query_ticket.html',{'info':info_list})
 
 def modify_ticket(request):
-    return render(request,'modify_ticket.html')
+    myticket = Ticket.objects.filter(id_phone_num__name=request.user)
+    return render(request,'modify_ticket.html',{'myticket':myticket})
 # Create your views here.

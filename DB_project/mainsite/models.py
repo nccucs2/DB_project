@@ -7,7 +7,7 @@ class Passenger(models.Model):
     name = models.ForeignKey(User,on_delete=models.CASCADE)
     phone_number = models.CharField(max_length=20)
     def __str__(self):
-        return self.name
+        return str(self.name)
 
     # id = models.OneToOneField(User,on_delete=models.CASCADE)
 
@@ -16,7 +16,7 @@ class Train(models.Model):
     train_id = models.CharField(max_length=20)
     num_of_seat = models.SmallIntegerField()
     def __str__(self):
-        return self.train_id
+        return str(self.train_id)
 
 
 class Run(models.Model):
@@ -27,17 +27,24 @@ class Run(models.Model):
     time = models.TimeField(blank=True)
     train_id = models.ForeignKey(Train,on_delete=models.CASCADE)
     def __str__(self):
-        return self.run_id
+        return str(self.run_id)
 
+class Seat(models.Model):
+    train_id = models.ForeignKey(Train,on_delete=models.CASCADE,blank = True,null=True)
+    # run_id = models.ForeignKey(Run,on_delete=models.CASCADE,blank = True,null=True)
+    seat_id = models.CharField(max_length=20)
+    booked = models.BooleanField(default=True)
+    def __str__(self):
+        return str(self.seat_id)
 
 class Ticket(models.Model):
-    ticket_id = models.CharField(max_length=20)
+    passenger = models.ForeignKey(Seat,on_delete=models.CASCADE,default='')
     name = models.CharField(max_length=20)
     run_id = models.ForeignKey(Run,on_delete=models.CASCADE)
     id_phone_num = models.ForeignKey(Passenger,on_delete=models.CASCADE,blank = True,null=True)
 
     def __str__(self):
-        return self.ticket_id
+        return str(self.name) + " " + str(self.run_id) + " " + str(self.passenger)
 
 
 
@@ -45,15 +52,10 @@ class Station(models.Model):
     station_id = models.CharField(max_length=20)
     name = models.CharField(max_length=20)
     def __str__(self):
-        return self.name
+        return str(self.name)
 
 
-class Seat(models.Model):
-    train_id = models.ForeignKey(Train,on_delete=models.CASCADE,blank = True,null=True)
-    # run_id = models.ForeignKey(Run,on_delete=models.CASCADE,blank = True,null=True)
-    seat_id = models.CharField(max_length=20)
-    def __str__(self):
-        return self.seat_id
+
 
 
 class Pass(models.Model):

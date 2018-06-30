@@ -15,14 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from django.urls import path
+#from django.urls import path
 from mainsite import views
 urlpatterns = [
     url(r'^login/$', views.login),
     url(r'^menu/$',views.menu),
     url(r'^accounts/logout/$',views.logout),
     url('admin/', admin.site.urls),
-    url(r'^menu/delete_ticket/$',views.delete_ticket),
+    url(r'^menu/new_ticket/$',views.new_ticket),
     url(r'^menu/modify_ticket/$',views.modify_ticket),
     url(r'^menu/query_ticket/$',views.query_ticket),
     url(r'^menu/train_query/$',views.train_query),
